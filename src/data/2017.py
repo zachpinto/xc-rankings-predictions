@@ -1,42 +1,30 @@
 import pandas as pd
+import csv
 
 # Load the CSV file
-file_path = '../../data/raw/2017.csv'
-df = pd.read_csv(file_path, header=None)
+file_path = '../../data/raw/2017.csv'  # Update this path to the location of your file
+df = pd.read_csv(file_path, skiprows=1, header=None, encoding='utf-8')
 
+# Define the column names
+df.columns = ['Place', 'LastName', 'FirstName', 'Grade', 'School', 'Time']
 
-# Function to extract relevant information from each row
-def extract_relevant_info(row):
-    name = f"{row[2].strip()}{row[3].strip()}"
-    grade = row[4]
-    school = row[5].strip() if not pd.isna(row[5]) else ''
+# Remove the leading numbers (places) column
+df = df.drop(columns=['Place'])
 
-    # Locate the time value, which should always be in the format of 'MM:SS.d'
-    time = ''
-    for value in row[6:]:
-        if isinstance(value, str) and ':' in value:
-            time = value.strip()
-            break
+# Combine the last and first names with proper formatting
+df['Name'] = df.apply(lambda row: f'{row["LastName"].strip()} {row["FirstName"].strip()}', axis=1)
 
-    # Combine school if there are multiple words
-    school_parts = []
-    for value in row[5:]:
-        if isinstance(value, str) and not (':' in value):
-            school_parts.append(value.strip())
-        if ':' in value:
-            break
-    school = ' '.join(school_parts)
+# Add quotes around the combined name without extra quotes
+df['Name'] = df['Name'].apply(lambda x: f'"{x}"')
 
-    return [name, grade, school, time]
+# Reorder the columns
+df = df[['Name', 'Grade', 'School', 'Time']]
 
+# Sort the dataframe by Time in ascending order
+df = df.sort_values(by='Time')
 
-# Apply the function to each row
-processed_data = df.apply(extract_relevant_info, axis=1)
-processed_df = pd.DataFrame(processed_data.tolist(), columns=['Name', 'Grade', 'School', 'Time'])
+# Save the cleaned and sorted dataframe to a new CSV file
+output_file_path = '../../data/interim/2017.csv'  # Update this path to where you want to save the file
+df.to_csv(output_file_path, index=False, encoding='utf-8', quoting=csv.QUOTE_MINIMAL)
 
-# Save the cleaned data to a new CSV file
-output_file_path = '../../data/interim/2017.csv'
-processed_df.to_csv(output_file_path, index=False)
-
-# Display the processed data for verification
-print(processed_df.head())
+print("Data cleaning and sorting complete. The cleaned file is saved at:", output_file_path)
