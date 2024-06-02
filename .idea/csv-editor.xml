@@ -80,6 +80,13 @@
             </Attribute>
           </value>
         </entry>
+        <entry key="/data/processed/data.csv">
+          <value>
+            <Attribute>
+              <option name="separator" value="," />
+            </Attribute>
+          </value>
+        </entry>
         <entry key="/data/raw/2010.csv">
           <value>
             <Attribute>
