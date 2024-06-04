@@ -4,3 +4,5 @@ roadmap.md
 /references/
 /reports/
 !/reports/figures
+!/reports/figures/feature_importance.png
+!/reports/figures/tree_visualization.png
