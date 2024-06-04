@@ -157,13 +157,6 @@
             </Attribute>
           </value>
         </entry>
-        <entry key="/models/predictions_2018.csv">
-          <value>
-            <Attribute>
-              <option name="separator" value="," />
-            </Attribute>
-          </value>
-        </entry>
         <entry key="/reports/2019_model_performance_assessment.csv">
           <value>
             <Attribute>
