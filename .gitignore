@@ -2,3 +2,5 @@
 roadmap.md
 /data/
 /references/
+/reports/
+!/reports/figures

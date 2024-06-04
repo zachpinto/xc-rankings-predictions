@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Load the predictions
-file_path = '../../models/predictions_2019.csv'
+file_path = '../../reports/predictions_2019.csv'
 pred_df = pd.read_csv(file_path)
 
 # Melt the dataframe to have one row per runner
