@@ -30,16 +30,16 @@ pip install -r requirements.txt
 
 1. **Run the data preprocessing scripts**:
 ```bash
-    python src/data/2010.py
-    python src/data/2011.py
-    python src/data/2012.py
-    python src/data/2013.py
-    python src/data/2014.py
-    python src/data/2015.py
-    python src/data/2016.py
-    python src/data/2017.py
-    python src/data/2018.py
-    python src/data/2019.py
+python src/data/2010.py
+python src/data/2011.py
+python src/data/2012.py
+python src/data/2013.py
+python src/data/2014.py
+python src/data/2015.py
+python src/data/2016.py
+python src/data/2017.py
+python src/data/2018.py
+python src/data/2019.py
 ```
 
 2. **Preprocessing for merged dataframe**:
